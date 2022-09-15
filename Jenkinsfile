@@ -15,7 +15,7 @@ pipeline{
 				sh 'mvn clean install'
 			}
 		}
-		stage('rm -rf' slave1'){
+		stage('rm -rf slave1'){
 			agent{
 				label{
 					label'slave1'
@@ -31,6 +31,18 @@ pipeline{
 				sh ' scp -i /root/sk1.pem /mnt/projects/assignment2/gameoflife-web/target/gameoflife.war ec2-user@65.2.186.89:/mnt/webserver/apache-tomcat-9.0.65/webapps/
 			}
 		}
-		
+		stage('deploy on slave1'){
+			agent{
+				label{
+					label'slave1'
+					customWorkspace'/mnt/webserver/apache-tomcat-9.0.65/bin/'
+				}
+			}
+			steps{
+				sh './shutdown.sh'
+				sh 'sleep 5'
+				sh './startup.sh'
+			}
+		}
 	}
 }
