@@ -28,7 +28,7 @@ pipeline{
 		}
 		stage('copy WAR on slave1'){
 			steps{
-				sh ' scp -i /root/sk1.pem /mnt/projects/assignment2/gameoflife-web/target/gameoflife.war ec2-user@65.2.186.89:/mnt/webserver/apache-tomcat-9.0.65/webapps/
+				sh ' scp -i /root/sk1.pem /mnt/projects/assignment2/gameoflife-web/target/gameoflife.war ec2-user@65.2.186.89:/mnt/webserver/apache-tomcat-9.0.65/webapps/'
 			}
 		}
 		stage('deploy on slave1'){
