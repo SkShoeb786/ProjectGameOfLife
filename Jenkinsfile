@@ -8,7 +8,7 @@ pipeline{
 	stages{
 		stage('build war'){
 			steps{
-				dir('/mnt/project/game-of-life'){
+				dir('/mnt/project/'){
 				sh 'mvn install -DskipTests'
 			}
 			}
