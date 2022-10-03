@@ -39,5 +39,31 @@ pipeline{
 				sh 'sudo /home/ec2-user/webserver/apache-tomcat-9.0.67/bin/startup.sh'
 			}
 		}
+		stage('slave2 clear previos war'){
+			agent{
+				label{
+					label'slave2'
+				}
+			}
+			steps{
+				sh 'sudo rm -rf /home/ec2-user/webserver/apache-tomcat-9.0.67/webapps/*'
+			}
+		}
+		stage('deploy gameoflife on slave2'){
+			steps{
+				sh 'scp -i /root/Common.pem /mnt/project/gameoflife-web/target/gameoflife.war ec2-user@13.232.145.4:/home/ec2-user/webserver/apache-tomcat-9.0.67/webapps'
+			}
+		}
+		stage('start tomcat slave2'){
+			agent{
+				label{
+					label'slave2'
+				}
+			}
+			steps{
+				sh 'sudo /home/ec2-user/webserver/apache-tomcat-9.0.67/bin/shutdown.sh'
+				sh 'sudo /home/ec2-user/webserver/apache-tomcat-9.0.67/bin/startup.sh'
+			}
+		}
 	}
 }
