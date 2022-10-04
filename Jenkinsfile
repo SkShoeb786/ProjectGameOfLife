@@ -5,6 +5,9 @@ pipeline{
 			customWorkspace'/mnt/project/'
 		}
 	}
+	tools{
+		maven 'apache-maven-3.8.6'
+	}
 	stages{
 		stage('build war'){
 			steps{
