@@ -25,7 +25,7 @@ pipeline{
 		}
 		stage('deploy gameoflife on slave1'){
 			steps{
-				sh 'scp -i /root/Common.pem /mnt/project/gameoflife-web/target/gameoflife.war ec2-user@13.232.227.175:/home/ec2-user/webserver/apache-tomcat-9.0.67/webapps'
+				sh 'scp -i /root/Common.pem /mnt/project/gameoflife-web/target/gameoflife.war ec2-user@43.205.237.123:/home/ec2-user/webserver/apache-tomcat-9.0.67/webapps'
 			}
 		}
 		stage('start tomcat slave1'){
@@ -51,7 +51,7 @@ pipeline{
 		}
 		stage('deploy gameoflife on slave2'){
 			steps{
-				sh 'scp -i /root/Common.pem /mnt/project/gameoflife-web/target/gameoflife.war ec2-user@13.232.145.4:/home/ec2-user/webserver/apache-tomcat-9.0.67/webapps'
+				sh 'scp -i /root/Common.pem /mnt/project/gameoflife-web/target/gameoflife.war ec2-user13.232.208.47:/home/ec2-user/webserver/apache-tomcat-9.0.67/webapps'
 			}
 		}
 		stage('start tomcat slave2'){
